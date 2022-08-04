@@ -21,15 +21,17 @@ console.log('selam');
 obs.subscribe((x) => console.log(x));
 subject.next(1000);
 
-var observable = Observable.create(observer => {
+var observable = Observable.create((observer) => {
   observer.next(1);
   observer.next(2);
   observer.next(3);
+  observer.next(3);
+  observer.next(3);
   observer.complete();
-  });
-  var observer = {
+});
+var observer = {
   next: (value) => console.log(value),
   error: (err) => console.log(err),
-  complete: () => console.log('done!')
-  };
-  observable.subscribe(observer);
+  complete: () => console.log('done!'),
+};
+observable.subscribe(observer);
